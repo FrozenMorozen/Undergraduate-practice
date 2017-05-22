@@ -4,7 +4,7 @@ var options = {
   "method": "GET",
   "hostname": "localhost",
   "port": "58444",
-  "path": "/notes",
+  "path": "/notes/59225bdaf238301320c70dfe",
   "headers": {
     "cache-control": "no-cache",
     "postman-token": "f20319e6-eb96-40b3-736a-9cfa07d6a492"

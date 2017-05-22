@@ -8,8 +8,15 @@ module.exports = function(app, db) {
       if (err) {
         res.send({'error':'An error has occurred'});
       } else {
-        console.log(req.title,req.body);
-        res.send(item); 
+        console.log(item);
+        res.send(item);
+        var fs = require('fs');
+        fs.writeFile('/Users/Администратор/Desktop/Практика/projects/RestAPI/Rest_API(authorization)/app/database/test.txt', "dd\n", function(error){
+                        if(error) throw error; // если возникла ошибка
+                        console.log("Асинхронная запись файла завершена. Содержимое файла:");
+                        //var data = fs.readFileSync("hello.txt", "utf8");
+                        //console.log(data);  // выводим считанные данные
+              }); 
       } 
     });
   });
