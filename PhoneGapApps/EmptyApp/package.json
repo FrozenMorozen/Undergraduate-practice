@@ -1,0 +1,15 @@
+{
+    "name": "empty.app",
+    "version": "1.0.0",
+    "displayName": "EmptyApp",
+    "cordova": {
+        "platforms": [
+            "android",
+            "ios"
+        ]
+    },
+    "dependencies": {
+        "cordova-ios": "~4.4.0",
+        "cordova-android": "~6.2.2"
+    }
+}

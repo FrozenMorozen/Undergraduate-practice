@@ -1,0 +1,10 @@
+{
+		"name of data category" : "value",
+		"anything data info" : "value",
+		"contents of data" : {
+			"name of index 1" : "value for index 1",
+			"name of index 2" : "value for index 2",
+			"name of index 3" : "value for index 3",
+			"name of index 4" : "value for index 4",
+		}
+}
