@@ -4,7 +4,6 @@ const port = 58444;
 
 function makeCounterOfTryRequest() {
   var currentCountOfTryRequest = 1;
-
   return function() {
     return currentCountOfTryRequest++;
   };
@@ -21,7 +20,7 @@ app.listen(port, () => {
     console.log('                    . . .');
     });
 app.get('/PUdata', function(req, res) {
-	console.log('Запрос '+req.method+' принят №'+counterOfTryRequest());
+	console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
 	res.send({
 		"tuk":"pyk",
 		"tusk":"psyk"
