@@ -30,6 +30,7 @@ $$(document).on('deviceready', function() {
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
+    
 
 })
 
@@ -37,6 +38,7 @@ myApp.onPageInit('about', function (page) {
 $$(document).on('pageInit', function (e) {
     // Get page data from event data
     var page = e.detail.page;
+    
 
     if (page.name === 'about') {
         // Following code will be executed for page with data-page attribute equal to "about"
@@ -50,6 +52,8 @@ $$(document).on('pageInit', function (e) {
         var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
         //user = JSON.parse(user);
         //myApp.alert( user.name+ ' '+ user.age + ' '+ user.isAdmin);
-    }
+
+           
+}
 })
 
