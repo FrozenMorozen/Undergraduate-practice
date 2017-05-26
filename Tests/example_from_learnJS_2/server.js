@@ -24,6 +24,7 @@ function accept(req, res) {
 
 if (!module.parent) {
   http.createServer(accept).listen(8080);
+  console.log('Сервер слушает');
 } else {
   exports.accept = accept;
 }

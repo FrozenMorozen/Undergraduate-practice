@@ -2,6 +2,17 @@ const express        = require('express');
 const app            = express();
 const port = 58444;
 
+const bodyParser     = require('body-parser');
+app.use(bodyParser.urlencoded({extended: true}));
+
+/*app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-type, Accept, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});*/
+
 function makeCounterOfTryRequest() {
   var currentCountOfTryRequest = 1;
   return function() {
@@ -10,15 +21,22 @@ function makeCounterOfTryRequest() {
 }
 var counterOfTryRequest = makeCounterOfTryRequest();
 
-app.listen(port, () => {
-    console.log('SERVER LISTENING ON ' + port);
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
+app.listen(port, () => { console.log('SERVER LISTENING ON ' + port);
+    setInterval(function() {
+  console.log('                .');
+}, 2000);
     });
+
+app.options('',function(req,res,next) {
+    console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, Content-type, Accept, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+    res.send();
+});
+
 app.get('/PUdata', function(req, res) {
 	console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
 	res.send({
@@ -47,7 +65,7 @@ $.getJSON('example.json', function(data) {
 	 }).appendTo('body');
 
 	})*/
-    console.log('Ответ '+res.val+' отправлен');
+    console.log('Ответ №'+ counterCountOfTryRequest+' '+res.text+' отправлен');
     console.log('SERVER LISTENING ON ' + port);
     console.log('                    . . .');
     console.log('                    . . .');
