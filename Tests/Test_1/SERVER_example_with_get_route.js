@@ -24,7 +24,7 @@ var counterOfTryRequest = makeCounterOfTryRequest();
 app.listen(port, () => { console.log('SERVER LISTENING ON ' + port);
     setInterval(function() {
   console.log('                .');
-}, 2000);
+}, 3000);
     });
 
 app.options('',function(req,res,next) {
@@ -67,10 +67,4 @@ $.getJSON('example.json', function(data) {
 	})*/
     console.log('Ответ №'+ counterCountOfTryRequest+' '+res.text+' отправлен');
     console.log('SERVER LISTENING ON ' + port);
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
-    console.log('                    . . .');
 });

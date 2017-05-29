@@ -24,13 +24,37 @@ $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 }); 
 
-
 // Now we need to run the code that will be executed only for About page.
 
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
-    
+   
+})
+
+//Авторизация-----------------------------------------------------------------------------
+myApp.onPageInit('authorization', function (page) {
+    $$('.login-modal').on('click', function () {
+    myApp.modalLogin('Authentication required', function (username, password) {
+        myApp.alert('Thank you! Username: ' + username + ', Password: ' + password);
+    });
+});
+ 
+$$('.password-modal').on('click', function () {
+    myApp.modalPassword('You password please:', function (password) {
+        myApp.alert('Thank you! Your password is: ' + password);
+    });
+});        
+
+})
+//-----------------------------------------------------------------------------------------
+
+myApp.onPageInit('power_state_data1', function (page) {
+  
+   /*$$.getJSON('./power_state_data1.json', function (data) {
+            myApp.alert("dsd");
+        });
+   myApp.alert("dsd");*/
 
 })
 
@@ -52,6 +76,8 @@ $$(document).on('pageInit', function (e) {
         var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
         //user = JSON.parse(user);
         //myApp.alert( user.name+ ' '+ user.age + ' '+ user.isAdmin);
+
+        
 
            
 }
