@@ -29,42 +29,8 @@ $$(document).on('deviceready', function() {
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
-
-
+//--пример запроса на стороне сайта с колбэком
     var test;
-    $$.ajax({
-        url: "power_state_data1.json",
-        dataType: "json",
-        async: true,
-        success: function(msg){
-            test = msg;
-            myApp.alert('Содержимое файла: '+test);
-        }
-    });
-   
-})
-
-//Авторизация-----------------------------------------------------------------------------
-myApp.onPageInit('authorization', function (page) {
-    $$('.login-modal').on('click', function () {
-        myApp.modalLogin('Authentication required', function (username, password) {
-            myApp.alert('Thank you! Username: ' + username + ', Password: ' + password);
-        });
-    });
-
-    $$('.password-modal').on('click', function () {
-        myApp.modalPassword('You password please:', function (password) {
-            myApp.alert('Thank you! Your password is: ' + password);
-        });
-    });
-})
-//-----------------------------------------------------------------------------------------
-
-
-
-myApp.onPageInit('power_state_data1', function (page) {
-  
-var test;
     $$.ajax({
         url: "power_state_data1.json",
         dataType: "JSON",
@@ -74,23 +40,42 @@ var test;
             myApp.alert('Содержимое файла: '+test);
         }
     });
+//-----------------------------------------------
+})
 
-   /*var test;
+//Авторизация-----------------------------------------------------------------------------
+myApp.onPageInit('authorization', function (page) {
+    //$$('.login-modal').on('click', function () {
+        myApp.modalLogin('Введите данные для входа', function (username, password) {
+            myApp.alert('Thank you! Username: ' + username + ', Password: ' + password);
+        });
+    //});
+})
+//-----------------------------------------------------------------------------------------
+
+
+
+myApp.onPageInit('power_state_data1', function (page) {
+  
    $$.ajax({
     crossDomain: true,
     method: "GET",
-    url: "localhost:58444/PUdata",
-    dataType: "JSON",
+    url: "http://localhost:58444/PUdata",
+    dataType: "text",
     async: true,
     headers: {
-        //сontent-Security-Policy: "connect-src 'self'"
+        "Content-Security-Policy":"default-src *",
+        "content-type": "application/x-www-form-urlencoded",
+        "cache-control": "no-cache"
     },
-    success: function(msg){
-            test = msg;
-            myApp.alert('Содержимое файла: '+test);
+    success: function(){
+            myApp.alert('');
         }
-    });*/
+    });
+
 })
+  //------http://zabolotskikh.com/tips/content-security-policy/
+
 
 // Option 2. Using one 'pageInit' event handler for all pages:
 $$(document).on('pageInit', function (e) {
@@ -109,10 +94,5 @@ $$(document).on('pageInit', function (e) {
         var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
         //user = JSON.parse(user);
         //myApp.alert( user.name+ ' '+ user.age + ' '+ user.isAdmin);
-
-        
-
-           
-}
+    }
 })
-
