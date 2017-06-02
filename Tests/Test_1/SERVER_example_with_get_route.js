@@ -11,7 +11,6 @@ app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Origin, Content-type, Accept, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
     res.header('Content-Security-Policy','default-src *');
     next();
 });
@@ -24,10 +23,35 @@ function makeCounterOfTryRequest() {
 }
 var counterOfTryRequest = makeCounterOfTryRequest();
 
-app.listen(port, () => { console.log('SERVER LISTENING ON ' + port);
+var line='|||||||||||||||||||||||||||||||||||';
+app.listen(port, () => {
+  console.log(line);
+  console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
+  console.log(line);
+  var dot='.';
+  var y=-1;
+  var flag=false;
     setInterval(function() {
-  console.log('                .');
-}, 5000);
+      if (flag) {
+        dot=dot.slice(0,-1);
+        y=y+1;
+        console.log(dot+line.slice(0,y));
+        if (dot.length==1) { 
+          flag=false;
+          console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
+        };
+      } else {
+        console.log(dot+line.slice(0,y));
+        dot=dot+'.';
+        y=y-1;
+        if (dot.length==16) { 
+          flag=true;
+          console.log(dot+line.slice(0,y));
+        };
+      };
+    
+    
+}, 2000);
 
     });
 
@@ -62,16 +86,16 @@ $.getJSON('example.json', function(data) {
 
     })*/
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log('SERVER LISTENING ON ' + port);
+    console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
 });
 
-app.options('',function(req,res,next) {
-    console.log('Запрос №'+counterOfTryRequest+'  '+req.method+' принят');
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Origin, Content-type, Accept, Authorization');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    next();
-    res.send();
-});
+app.get('/power_state_data1', function(req, res) {
 
+    console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
+    console.log(' '+JSON.stringify(req.body));
+    res.send(' ыыы');
+
+
+    console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
+    console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
+  });

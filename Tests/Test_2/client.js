@@ -1,4 +1,4 @@
-var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
+var XHR = new XMLHttpRequest();
 
 var xhr = new XHR();
 

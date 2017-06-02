@@ -56,22 +56,30 @@ myApp.onPageInit('authorization', function (page) {
 
 
 myApp.onPageInit('power_state_data1', function (page) {
-  
+
    $$.ajax({
     crossDomain: true,
     method: "GET",
-    url: "http://localhost:58444/PUdata",
+    url: "http://localhost:58444/power_state_data1",
     dataType: "text",
     async: true,
-    headers: {
+    /*headers: {
         "Content-Security-Policy":"default-src *",
         "content-type": "application/x-www-form-urlencoded",
         "cache-control": "no-cache"
-    },
-    success: function(){
-            myApp.alert('');
+    },*/
+    success: function(data){
+            myApp.alert(data);
+        },
+        error: function(){
+            myApp.alert('error');
         }
+
     });
+
+   $$.get('http://localhost:58444/power_state_data1', function (data) {
+    myApp.alert(data);
+});
 
 })
   //------http://zabolotskikh.com/tips/content-security-policy/
