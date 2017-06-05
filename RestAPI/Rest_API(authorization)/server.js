@@ -4,6 +4,9 @@ const bodyParser     = require('body-parser');
 const app            = express();
 const port = 58444;
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(function (req, res, next) { 
+	res.header('Access-Control-Allow-Origin', '*');
+	});
 MongoClient.connect('mongodb://admin:1234@ds123311.mlab.com:23311/exampledb',(err,database) => {
 	if (err) return console.log(err) 
     require('./app/routes')(app, database);

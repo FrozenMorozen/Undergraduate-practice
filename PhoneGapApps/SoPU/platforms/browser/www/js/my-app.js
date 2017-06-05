@@ -19,9 +19,17 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+  
+
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
+
+    $$.get('http://localhost:58444/auth', function (data) {
+    myApp.alert(data);
+});
+
 }); 
 
 // Now we need to run the code that will be executed only for About page.
@@ -29,18 +37,7 @@ $$(document).on('deviceready', function() {
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('about', function (page) {
     // Do something here for "about" page
-//--пример запроса на стороне сайта с колбэком
-    var test;
-    $$.ajax({
-        url: "power_state_data1.json",
-        dataType: "JSON",
-        async: true,
-        success: function(msg){
-            test = msg;
-            myApp.alert('Содержимое файла: '+test);
-        }
-    });
-//-----------------------------------------------
+
 })
 
 //Авторизация-----------------------------------------------------------------------------
@@ -53,7 +50,15 @@ myApp.onPageInit('authorization', function (page) {
 })
 //-----------------------------------------------------------------------------------------
 
+myApp.onPageInit('Slider', function (page) {
+    var mySwiper = myApp.swiper('.swiper-container', {
+    pagination:'.swiper-pagination',
+    speed: 400,
+    spaceBetween: 100
+  });
+mySwiper.slideNext();
 
+})
 
 myApp.onPageInit('power_state_data1', function (page) {
 
@@ -63,11 +68,6 @@ myApp.onPageInit('power_state_data1', function (page) {
     url: "http://localhost:58444/power_state_data1",
     dataType: "text",
     async: true,
-    /*headers: {
-        "Content-Security-Policy":"default-src *",
-        "content-type": "application/x-www-form-urlencoded",
-        "cache-control": "no-cache"
-    },*/
     success: function(data){
             myApp.alert(data);
         },
@@ -77,7 +77,7 @@ myApp.onPageInit('power_state_data1', function (page) {
 
     });
 
-   $$.get('http://localhost:58444/power_state_data1', function (data) {
+   $$.get('http://localhost:58444/notes/59225bdaf238301320c70dfe', function (data) {
     myApp.alert(data);
 });
 

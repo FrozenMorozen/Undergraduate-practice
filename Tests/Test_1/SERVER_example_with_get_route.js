@@ -86,7 +86,7 @@ $.getJSON('example.json', function(data) {
 
     })*/
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
+    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
 });
 
 app.get('/power_state_data1', function(req, res) {
@@ -97,5 +97,37 @@ app.get('/power_state_data1', function(req, res) {
 
 
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
+    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
   });
+
+app.get('/auth', function(req,res){
+      console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
+    console.log(' '+JSON.stringify(req.body));
+
+    //--пример запроса на стороне сайта с колбэком
+    /*var $=require('JQuery');
+    var test;
+    $.ajax({
+        url: "authorization.json",
+        dataType: "JSON",
+        async: true,
+        success: function(msg){
+            test = msg;
+            console.log('Содержимое файла: '+test);
+        }
+    });*/
+JQuery.getJSON('authorization.json', function(data){
+  var test;
+  test=data;
+  res.text=test;
+  console.log(test);
+});
+
+    app.get('authorization.json', function(data){
+        var test=JSON.parse(data.text);
+        res.send(test);
+    });
+
+    console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
+    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
+});
