@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+    res.header('Access-Control-Allow-Methods', 'GET, OPTIONS, POST');
     res.header('Access-Control-Allow-Headers', 'Origin, Content-type, Accept, Authorization');
     res.header('Content-Security-Policy','default-src *');
     next();

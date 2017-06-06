@@ -14,12 +14,49 @@ Template7.global = {
 var $$ = Dom7;
 
 // Add view
-var mainView = myApp.addView('.view-main', {
-    // Because we want to use dynamic navbar, we need to enable it for this view:
-    dynamicNavbar: true
+var mainView = myApp.swiper('.swiper-container', {
+    pagination:'.swiper-pagination',
+    speed: 400,
+    spaceBetween: 100
+  });
+
+mainView.on('Init', function () {
+    myApp.alert('ssa');
+    $$.get('http://localhost:58444/auth', function (data) {
+    myApp.alert(data);
+});
+});
+  var k=1;
+  var flag=true;
+  if (flag) {
+    $$.get('http://localhost:58444/PUdata', function (data) {
+    myApp.alert(data);
+    $$('.huhuhue').text(data);
+})
+    flaf=false;
+}
+  
+mainView.on('slideNextStart', function () { 
+    k++;
+    myApp.alert(k);
+
 });
 
-  
+mainView.on('slidePrevStart', function () {
+
+    k--;
+    myApp.alert(k);
+    switch (k) {
+case 1:
+$$.get('http://localhost:58444/PUdata', function (data) {
+    myApp.alert(data);
+    $$('.huhuhue').text(data);
+})
+   }    
+     if (k==1) {
+         
+    }  
+});
 
 
 // Handle Cordova Device Ready Event
@@ -31,6 +68,7 @@ $$(document).on('deviceready', function() {
 });
 
 }); 
+
 
 // Now we need to run the code that will be executed only for About page.
 
@@ -50,15 +88,6 @@ myApp.onPageInit('authorization', function (page) {
 })
 //-----------------------------------------------------------------------------------------
 
-myApp.onPageInit('Slider', function (page) {
-    var mySwiper = myApp.swiper('.swiper-container', {
-    pagination:'.swiper-pagination',
-    speed: 400,
-    spaceBetween: 100
-  });
-mySwiper.slideNext();
-
-})
 
 myApp.onPageInit('power_state_data1', function (page) {
 
@@ -79,13 +108,8 @@ myApp.onPageInit('power_state_data1', function (page) {
 
    $$.get('http://localhost:58444/PUdata', function (data) {
     myApp.alert(data);
+    $$('.huhuhue').text(data);
 });
-
-  $$('.button').on('click', function() {
-    myApp.alert(page.name);
-    page.getElementById('khuli_tam').innerHTML = 'dhudh';
-    page.html('<p>ds</p>');
-   });
 })
 
 

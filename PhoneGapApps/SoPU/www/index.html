@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-
     <!-- Required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
@@ -19,21 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-
-    <!-- Your app title -->
+    
     <title>SoPU</title>
-
-    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
-        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.
-        <html>
-        <head>
-            <title></title>
-        </head>
-        <body>
-        
-        </body>
-        </html>
-     -->
 
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
@@ -41,23 +18,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-    <!-- Status bar overlay for full screen mode (PhoneGap) -->
-
-    
-
-    <div class="statusbar-overlay"></div>
-    <!-- Panels overlay-->
-    <div class="panel-overlay"></div>
-    <!-- Left panel with reveal effect-->
-    <div class="panel panel-left panel-reveal">
-        <div class="content-block">
-            <p>Left panel content goes here</p>
-            <a href="power_state_data1.html" class="close-panel">Данные по 1 энергоблоку</a>
-        </div>
-    </div>
-
-    <!-- Views -->    
+<body>    
     <div class="views">
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
@@ -65,37 +26,61 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">Awesome App</div>
-                    <div class="right">
-                        <!--
-                          Right link contains only icon - additional "icon-only" class
-                          Additional "open-panel" class tells app to open panel when we click on this link
-                        -->
-                        <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
-                    </div>
+                    <div class="center sliding">Энергоблок №1</div>
                 </div>
             </div>
             <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-            <div class="pages navbar-through toolbar-through">
+            <div class="pages navbar-through">
                 <!-- Page, "data-page" contains page name -->
-                <div data-page="index" class="page">
                     <!-- Scrollable page content -->
+                    <div data-page="Slider" class="page">
                     <div class="page-content">
-                        <div class="content-block">
-                            <p>Page content goes here</p>                           
-                            <!-- Link to another page -->
-                            <a href="about.html">About app</a>
-                        </div>
+                          <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><span>
+      <div class="content-block">
+                <div class="data-table card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="label-cell">Показаетели</th>
+                                <th class="numeric-cell">Значение</th>
+                                <th class="tablet-only">Ед. изм.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="label-cell">Мощность блока</td>
+                                <td class="numeric-cell">159</td>
+                                <td class="tablet-only">Мвт</td>
+                            </tr>
+                            <tr>
+                                <td class="label-cell">Частота сети</td>
+                                <td class="numeric-cell"><p><a href="#" class="huhuhue">Usual Button 1</a></p></td>
+                                <td class="tablet-only">Гц!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div></span>
+
+      </div>
+      <div class="swiper-slide"><span><div class="center sliding">Энергоблок №2</div>Ssssss</span>
+
+      </div>
+      <div class="swiper-slide"><span>Slide 3</span>
+
+      </div>
+      <div class="swiper-slide"><span>Slide 4</span>
+
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
+
+  </div>
                     </div>
-                </div>
-            </div>
-            <!-- Bottom Toolbar-->
-            <div class="toolbar">
-                <div class="toolbar-inner">
-                    <!-- Toolbar links -->
-                    <a href="authorization.html">Link 1</a>
-                    <a href="Slider.html" class="link">Link 2</a>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
