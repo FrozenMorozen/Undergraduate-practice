@@ -1,0 +1,19 @@
+{
+  "name": "dbquery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "http": "0.0.0",
+    "pg": "^6.2.3",
+    "reduce-component": "^1.0.1",
+    "tedious": "^2.0.0"
+  }
+}

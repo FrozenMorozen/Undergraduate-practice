@@ -16,7 +16,9 @@
     "http": "0.0.0",
     "mongodb": "^2.2.26",
     "pg": "^6.2.2",
-    "tedious": "^2.0.1"
+    "reduce-component": "^1.0.1",
+    "tedious": "^2.0.1",
+    "msnodesql": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

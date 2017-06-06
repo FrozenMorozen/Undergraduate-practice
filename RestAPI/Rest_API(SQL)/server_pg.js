@@ -29,7 +29,7 @@ var server = http.createServer(function(req, res) {
     res.end('An error occurred');
   };
 
-  pool.query('INSERT INTO visit (date) VALUES ($1)', [new Date()], function(err) {
+  pool.query('SELECT * FROM Autorization_data;', [new Date()], function(err) {
     if (err) return onError(err);
 
     // get the total number of visits today (including the current visit)
@@ -43,7 +43,7 @@ var server = http.createServer(function(req, res) {
 });
 
 pool
-  .query('CREATE TABLE IF NOT EXISTS visit (date timestamptz)')
+  .query('SELECT * FROM Autorization_data;')
   .then(function() {
     server.listen(1433, function() {
       console.log('server is listening on 3001')

@@ -6,7 +6,7 @@ var Request = require('tedious').Request;
 var config = {
   userName: 'program', 
   password: '123456', 
-  server: 'localhost:54123',
+  server: 'localhost',
   options: {
       database: 'DGKX\\MOROZOV_DB' 
   }
@@ -28,7 +28,7 @@ function queryDatabase(){
 
     // Read all rows from table
     request = new Request(
-        "SELECT TOP 1 pc.Name as CategoryName, p.name as ProductName FROM [SalesLT].[ProductCategory] pc JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid",
+        "SELECT * FROM Autorization_data;",
         function(err, rowCount, rows) {
             console.log(rowCount + ' row(s) returned');
         }

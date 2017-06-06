@@ -77,11 +77,18 @@ myApp.onPageInit('power_state_data1', function (page) {
 
     });
 
-   $$.get('http://localhost:58444/notes/59225bdaf238301320c70dfe', function (data) {
+   $$.get('http://localhost:58444/PUdata', function (data) {
     myApp.alert(data);
 });
 
+  $$('.button').on('click', function() {
+    myApp.alert(page.name);
+    page.getElementById('khuli_tam').innerHTML = 'dhudh';
+    page.html('<p>ds</p>');
+   });
 })
+
+
   //------http://zabolotskikh.com/tips/content-security-policy/
 
 
@@ -97,6 +104,7 @@ $$(document).on('pageInit', function (e) {
     if (page.name === 'authorization') {
         // Following code will be executed for page with data-page attribute equal to "about"
         myApp.alert('Here comes Authorization page');
+
     }
     if (page.name === 'power_state_data1') {
         var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
