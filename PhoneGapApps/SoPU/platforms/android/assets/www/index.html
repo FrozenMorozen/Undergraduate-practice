@@ -19,10 +19,12 @@
 </head>
 
 <body>    
+
     <div class="views">
         <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
             <!-- Top Navbar-->
+
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
@@ -34,7 +36,11 @@
                 <!-- Page, "data-page" contains page name -->
                     <!-- Scrollable page content -->
                     <div data-page="Slider" class="page">
-                    <div class="page-content">
+                    <div class="page-content pull-to-refresh-content">
+  <div class="pull-to-refresh-layer">
+    <div class="preloader"></div>
+    <div class="pull-to-refresh-arrow"></div>
+  </div>
                           <div class="swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide"><span>
@@ -43,7 +49,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th class="label-cell">Показаетели</th>
+                                <th class="label-cell">Показатели</th>
                                 <th class="numeric-cell">Значение</th>
                                 <th class="tablet-only">Ед. изм.</th>
                             </tr>
@@ -55,20 +61,24 @@
                                 <td class="tablet-only">Мвт</td>
                             </tr>
                             <tr>
-                                <td class="label-cell">Частота сети</td>
-                                <td class="numeric-cell"><p><a href="#" class="huhuhue">Usual Button 1</a></p></td>
+                                <td id="huhuhue" class="label-cell">Частота сети</td>
+                                <td class="numeric-cell"><p>1</p></td>
                                 <td class="tablet-only">Гц!</td>
                             </tr>
                         </tbody>
                     </table>
+                    <ul><div>sdss<div></ul>
                   </div>
                 </div></span>
 
       </div>
-      <div class="swiper-slide"><span><div class="center sliding">Энергоблок №2</div>Ssssss</span>
+      <div class="swiper-slide"><span>
+      <div class="center sliding">Энергоблок №2</div>
+      <a href="power_state_data1.html">huhuhu</a>
+      </span>
 
       </div>
-      <div class="swiper-slide"><span>Slide 3</span>
+      <div class="swiper-slide"><span>Slide 3<ul></ul>></span>
 
       </div>
       <div class="swiper-slide"><span>Slide 4</span>
@@ -84,7 +94,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>

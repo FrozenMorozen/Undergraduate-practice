@@ -59,32 +59,7 @@ app.get('/PUdata', function(req, res) {
 
     console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
     console.log(' '+JSON.stringify(req.body));
-    res.send({
-        "tuk":"pyk",
-        "tusk":"psyk"
-    });
-    /*function(){
-    $.getJSON('power_state_data1.json', function(data) {
-            for(var i=0;i<data.power_state_data1.length;i++){
-                if (power_state_data1.tyk) {res.send('hello world');};
-            }
-    });
-}*/
-/*var $=JQuery;
-$.getJSON('example.json', function(data) {
-     var items = [];
-     $.each(data, function(key, val) {
-       items.push('<li id="' + key + '">' + val + '</li>');
-     });
-     $('<ul/>', {
-
-       'class': 'my-new-list',
-
-       html: items.join('')
-
-     }).appendTo('body');
-
-    })*/
+    res.send({ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] });
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
     console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
 });
@@ -116,12 +91,12 @@ app.get('/auth', function(req,res){
             console.log('Содержимое файла: '+test);
         }
     });*/
-JQuery.getJSON('authorization.json', function(data){
+/*JQuery.getJSON('authorization.json', function(data){
   var test;
   test=data;
   res.text=test;
   console.log(test);
-});
+});*/
 
     app.get('authorization.json', function(data){
         var test=JSON.parse(data.text);

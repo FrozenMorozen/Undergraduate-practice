@@ -20,42 +20,61 @@ var mainView = myApp.swiper('.swiper-container', {
     spaceBetween: 100
   });
 
-mainView.on('Init', function () {
-    myApp.alert('ssa');
-    $$.get('http://localhost:58444/auth', function (data) {
-    myApp.alert(data);
+//-----Этот иф исполниться только один раз в самом начале
+//-----поэтому в нем выполни проверку аутентификации и заполнение первого слайда данными
+if (mainView.slides[1]) { 
+$$.get('http://localhost:58444/PUdata', function (data) {
+    myApp.alert(data,'SSSA');
+    data = JSON.parse(data);
+    myApp.alert( data.name+ ' '+ data.age + ' '+ data.isAdmin);
+
+    $$('.huhuhue').text(data.name);
+
+    
 });
-});
-  var k=1;
-  var flag=true;
-  if (flag) {
-    $$.get('http://localhost:58444/PUdata', function (data) {
-    myApp.alert(data);
-    $$('.huhuhue').text(data);
-})
-    flaf=false;
 }
-  
+    
+ 
 mainView.on('slideNextStart', function () { 
-    k++;
-    myApp.alert(k);
+    switch (mainView.activeIndex) {
+case 0:
+$$.get('http://localhost:58444/PUdata_1', function (data) {
+    myApp.alert(data);
+    $$('div.huh').html('<p>sdsdsdddss</p>');
+}); 
+break;
+case 1:
+$$('td.yeah').text('Поменял текст вот тут');
+break;
+case 2:
+myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
+   
+break;
+case 3:
+myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
+break;
+   }
 
 });
 
 mainView.on('slidePrevStart', function () {
-
-    k--;
-    myApp.alert(k);
-    switch (k) {
-case 1:
+      switch (mainView.activeIndex) {
+case 0:
 $$.get('http://localhost:58444/PUdata', function (data) {
     myApp.alert(data);
-    $$('.huhuhue').text(data);
-})
-   }
-     if (k==1) {
-         
-    }  
+    $$('td.numeric-cell').text('88');
+}); 
+break;
+case 1:
+
+break;
+case 2:
+myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
+break;
+case 3:
+
+break;
+   }   
 });
 
 
@@ -115,6 +134,10 @@ myApp.onPageInit('power_state_data1', function (page) {
 
   //------http://zabolotskikh.com/tips/content-security-policy/
 
+$$(document).on('init', function (e) {
+myApp.alert('Here comes Authorization page');
+
+})
 
 // Option 2. Using one 'pageInit' event handler for all pages:
 $$(document).on('pageInit', function (e) {
@@ -136,3 +159,35 @@ $$(document).on('pageInit', function (e) {
         //myApp.alert( user.name+ ' '+ user.age + ' '+ user.isAdmin);
     }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var ptrContent = $$('.pull-to-refresh-content');
+ 
+// Add 'refresh' listener on it
+ptrContent.on('ptr:refresh', function (e) {
+    // Emulate 2s loading
+    setTimeout(function () {
+        // Prepend new list element
+        ptrContent.find('ul').prepend('кое что добавил');
+        // When loading done, we need to reset it
+        myApp.pullToRefreshDone();
+    }, 2000);
+});
+myApp.pullToRefreshDone();
+myApp.destroyPullToRefresh();
