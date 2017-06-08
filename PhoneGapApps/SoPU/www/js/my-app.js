@@ -23,26 +23,12 @@ var mainView = myApp.swiper('.swiper-container', {
 //-----Этот иф исполниться только один раз в самом начале
 //-----поэтому в нем выполни проверку аутентификации и заполнение первого слайда данными
 if (mainView.slides[1]) { 
-$$.get('http://localhost:58444/PUdata', function (data) {
-    myApp.alert(data,'SSSA');
-    data = JSON.parse(data);
-    myApp.alert( data.name+ ' '+ data.age + ' '+ data.isAdmin);
 
-    $$('.huhuhue').text(data.name);
-
-    
-});
 }
     
  
 mainView.on('slideNextStart', function () { 
     switch (mainView.activeIndex) {
-case 0:
-$$.get('http://localhost:58444/PUdata_1', function (data) {
-    myApp.alert(data);
-    $$('div.huh').html('<p>sdsdsdddss</p>');
-}); 
-break;
 case 1:
 $$('td.yeah').text('Поменял текст вот тут');
 break;
@@ -51,7 +37,7 @@ myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
    
 break;
 case 3:
-myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
+
 break;
    }
 
@@ -60,32 +46,34 @@ break;
 mainView.on('slidePrevStart', function () {
       switch (mainView.activeIndex) {
 case 0:
-$$.get('http://localhost:58444/PUdata', function (data) {
-    myApp.alert(data);
-    $$('td.numeric-cell').text('88');
+  $$.getJSON('power_state_data1.json', function (data) {
+    data = JSON.parse(data);
+    myApp.alert(JSON.stringify(data.tyk));
+
+  });
+$$.get('http://localhost:58444/PUdata/1', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power);
+    $$('td.network_frequency').text(data.network_frequency);
+    $$('td.axial_shift').text(data.axial_shift);
+    $$('td.drum_level').text(data.drum_level);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum);
+    $$('td.block_stop').text(data.block_stop);
 }); 
 break;
 case 1:
 
 break;
 case 2:
-myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
-break;
-case 3:
 
 break;
-   }   
+}   
 });
 
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
-
-    $$.get('http://localhost:58444/auth', function (data) {
-    myApp.alert(data);
-});
-
 }); 
 
 

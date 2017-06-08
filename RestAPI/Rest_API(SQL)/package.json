@@ -2,13 +2,7 @@
   "name": "morozov_notable",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
-  },
-  "author": "",
-  "license": "ISC",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
@@ -22,5 +16,11 @@
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
-  }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon SERVER_example_with_get_route.js"
+  },
+  "author": "",
+  "license": "ISC"
 }

@@ -55,14 +55,13 @@ ptrContent.on('ptr:refresh', function (e) {
     // Emulate 2s loading
     setTimeout(function () {
         // Random image
-        var picURL = 'http://hhhhold.com/88/d/jpg?' + Math.round(Math.random() * 100);
         // Random song
         var song = songs[Math.floor(Math.random() * songs.length)];
         // Random author
         var author = authors[Math.floor(Math.random() * authors.length)];
         // List item html
         var itemHTML = '<li class="item-content">' +
-                          '<div class="item-media"><img src="' + picURL + '" width="44"/></div>' +
+                          '<div class="item-media"></div>' +
                           '<div class="item-inner">' +
                             '<div class="item-title-row">' +
                               '<div class="item-title">' + song + '</div>' +

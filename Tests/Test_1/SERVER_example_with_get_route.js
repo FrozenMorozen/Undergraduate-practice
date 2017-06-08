@@ -23,45 +23,37 @@ function makeCounterOfTryRequest() {
 }
 var counterOfTryRequest = makeCounterOfTryRequest();
 
-var line='|||||||||||||||||||||||||||||||||||';
+
 app.listen(port, () => {
-  console.log(line);
-  console.log(line.slice(0,-33)+'START SERVER LISTENING ON ' + port +line.slice(0,-33));
-  console.log(line);
-  var dot='.';
+  console.log('START SERVER LISTENING ON ' + port);
   var y=-1;
   var flag=false;
     setInterval(function() {
-      if (flag) {
-        dot=dot.slice(0,-1);
-        y=y+1;
-        console.log(dot+line.slice(0,y));
-        if (dot.length==1) { 
-          flag=false;
-          console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
-        };
-      } else {
-        console.log(dot+line.slice(0,y));
-        dot=dot+'.';
-        y=y-1;
-        if (dot.length==16) { 
-          flag=true;
-          console.log(dot+line.slice(0,y));
-        };
-      };
-    
-    
-}, 2000);
+      console.log(''); console.log('');
+      console.log(new Date()+'      WE ARE LIVE ON '+port);
+      console.log(''); console.log('');
+}, 60000);
 
     });
 
-app.get('/PUdata', function(req, res) {
 
-    console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
-    console.log(' '+JSON.stringify(req.body));
-    res.send({ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] });
+app.get('/PUdata/:id', function(req, res) {
+  const id = req.params.id;
+
+    console.log('Запрос №'+counterOfTryRequest()+' данных '+id+' блока принят');
+    console.log(' '+JSON.stringify(req.params));
+    res.send(
+      { 
+        "power": 123,
+        "network_frequency": 35,
+        "axial_shift": 1.01,
+        "drum_level": 14,
+        "pressure_in_the_drum": 124,
+        "block_stop": true
+      }
+      );
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
+    console.log('');
 });
 
 app.get('/power_state_data1', function(req, res) {
@@ -72,12 +64,12 @@ app.get('/power_state_data1', function(req, res) {
 
 
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
   });
 
 app.get('/auth', function(req,res){
       console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
     console.log(' '+JSON.stringify(req.body));
+
 
     //--пример запроса на стороне сайта с колбэком
     /*var $=require('JQuery');
@@ -98,11 +90,36 @@ app.get('/auth', function(req,res){
   console.log(test);
 });*/
 
+/*loadURL = function(url) {
+    var oRequest = new XMLHttpRequest();
+    oRequest.open('GET', url, false);
+    oRequest.setRequestHeader("User-Agent", navigator.userAgent);
+    oRequest.send(null);
+    console.log(oRequest.responseText);
+    return oRequest.responseText;
+};*/
+
+var json;
     app.get('authorization.json', function(data){
-        var test=JSON.parse(data.text);
-        res.send(test);
-    });
+      json=data;
+      res.text=json;
+      console.log(json);
+        }); 
+
+
+var options = {
+  dotfiles: 'ignore',
+  etag: false,
+  extensions: ['json'],
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now());
+  }
+}
+
+app.use(express.static('public', options));
 
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-    console.log(line.slice(0,-28)+'WE ARE LIVE ON ' + port+line.slice(0,-28)+'|');
 });
