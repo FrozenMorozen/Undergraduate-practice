@@ -33,7 +33,7 @@ case 1:
 $$('td.yeah').text('Поменял текст вот тут');
 break;
 case 2:
-myApp.alert('!!!!!!!!!!!!!!!!'+mainView.activeIndex);
+myApp.alert('!!!!!!!!!!!!!!!!' + mainView.activeIndex);
    
 break;
 case 3:
@@ -43,14 +43,17 @@ break;
 
 });
 
+
+
 mainView.on('slidePrevStart', function () {
       switch (mainView.activeIndex) {
 case 0:
-  $$.getJSON('power_state_data1.json', function (data) {
-    data = JSON.parse(data);
-    myApp.alert(JSON.stringify(data.tyk));
-
+  
+$$.getJSON('http://localhost:58444/auth', function (data) {
+    //data = JSON.parse(data);
+    myApp.alert(JSON.stringify(data));
   });
+
 $$.get('http://localhost:58444/PUdata/1', function (data) {
     data = JSON.parse(data);
     $$('td.power').text(data.power);
@@ -59,6 +62,7 @@ $$.get('http://localhost:58444/PUdata/1', function (data) {
     $$('td.drum_level').text(data.drum_level);
     $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum);
     $$('td.block_stop').text(data.block_stop);
+    myApp.alert('ura');
 }); 
 break;
 case 1:
@@ -130,7 +134,13 @@ myApp.alert('Here comes Authorization page');
 // Option 2. Using one 'pageInit' event handler for all pages:
 $$(document).on('pageInit', function (e) {
     // Get page data from event data
-    var page = e.detail.page;  
+    var page = e.detail.page;
+
+    if (page.name === 'mainView') {
+        // Following code will be executed for page with data-page attribute equal to "about"
+        myApp.alert('Here comes About page');
+    }
+
 
     if (page.name === 'about') {
         // Following code will be executed for page with data-page attribute equal to "about"
