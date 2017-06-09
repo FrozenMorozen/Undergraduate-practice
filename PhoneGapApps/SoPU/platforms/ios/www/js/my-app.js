@@ -22,21 +22,63 @@ var mainView = myApp.swiper('.swiper-container', {
 
 //-----Этот иф исполниться только один раз в самом начале
 //-----поэтому в нем выполни проверку аутентификации и заполнение первого слайда данными
-if (mainView.slides[1]) { 
-
+if (mainView.slides[1]) {
+myApp.modalLogin('Введите данные для входа', function (username, password) {
+            myApp.alert('Thank you! Username: ' + username + ', Password: ' + password);
+        }); 
+$$.get('http://localhost:58444/PUdata/1', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power[0]);
+    $$('td.network_frequency').text(data.network_frequency[0]);
+    $$('td.axial_shift').text(data.axial_shift[0]);
+    $$('td.drum_level').text(data.drum_level[0]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[0]);
+    $$('td.block_stop').text(data.block_stop);
+});
 }
     
  
 mainView.on('slideNextStart', function () { 
     switch (mainView.activeIndex) {
 case 1:
-$$('td.yeah').text('Поменял текст вот тут');
+id=1;
+$$('div.navbar-inner').html('<div align="right"><nobr>Текст</nobr></div>');
+//text('energy');
+
+$$.get('http://localhost:58444/power_state_data1.json', function (data) {
+    //data = JSON.parse(data);
+    myApp.alert(JSON.stringify(data));
+  });
+
+$$.get('http://localhost:58444/PUdata/id', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
+    $$('td.block_stop').text(data.block_stop);
+}); 
+
 break;
 case 2:
-myApp.alert('!!!!!!!!!!!!!!!!' + mainView.activeIndex);
+id=2;
+$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №3</div>');
+
+$$.get('http://localhost:58444/PUdata/id', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
+    $$('td.block_stop').text(data.block_stop);
+}); 
    
 break;
 case 3:
+$$('div.navbar-inner').html('<div class="center sliding">График выработки</div>');
+
 
 break;
    }
@@ -46,29 +88,55 @@ break;
 
 
 mainView.on('slidePrevStart', function () {
+    
+    var id;
       switch (mainView.activeIndex) {
 case 0:
-  
-$$.getJSON('http://localhost:58444/auth', function (data) {
+id=0;
+  $$('div.navbar-inner').html('<div class="center sliding">Энергоблок №1</div>');
+/*$$.getJSON('http://localhost:58444/auth', function (data) {
     //data = JSON.parse(data);
     myApp.alert(JSON.stringify(data));
-  });
+  });*/
 
-$$.get('http://localhost:58444/PUdata/1', function (data) {
+$$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
-    $$('td.power').text(data.power);
-    $$('td.network_frequency').text(data.network_frequency);
-    $$('td.axial_shift').text(data.axial_shift);
-    $$('td.drum_level').text(data.drum_level);
-    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
-    myApp.alert('ura');
 }); 
 break;
 case 1:
+id=1;
+$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №2</div>');
+
+$$.get('http://localhost:58444/PUdata/id', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
+    $$('td.block_stop').text(data.block_stop);
+}); 
 
 break;
 case 2:
+id=2;
+$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №3</div>');
+
+$$.get('http://localhost:58444/PUdata/id', function (data) {
+    data = JSON.parse(data);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
+    $$('td.block_stop').text(data.block_stop);
+}); 
 
 break;
 }   

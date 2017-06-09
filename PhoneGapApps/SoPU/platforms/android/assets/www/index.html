@@ -21,96 +21,176 @@
 <body>    
 
     <div class="views">
-        <!-- Your main view, should have "view-main" class -->
         <div class="view view-main">
             <!-- Top Navbar-->
-
             <div class="navbar">
                 <div class="navbar-inner">
-                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
                     <div class="center sliding">Энергоблок №1</div>
                 </div>
             </div>
-            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
-            <div class="pages navbar-through">
-                <!-- Page, "data-page" contains page name -->
-                    <!-- Scrollable page content -->
-                    <div data-page="Slider" class="page">
-                    <div class="page-content pull-to-refresh-content">
-  <div class="pull-to-refresh-layer">
-    <div class="preloader"></div>
-    <div class="pull-to-refresh-arrow"></div>
-  </div>
-                          <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <span>
-          <div class="content-block">
-            <div class="data-table card">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="label-cell">Показатели</th>
-                                <th class="numeric-cell">Значение</th>
-                                <th class="tablet-only">Ед. изм.</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="label-cell">Мощность блока</td>
-                                <td class="power">159</td>
-                                <td class="tablet-only">Мвт</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell">Частота сети</td>
-                                <td class="network_frequency">1</td>
-                                <td class="tablet-only">Гц</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell">Осевой сдвиг</td>
-                                <td class="axial_shift">-1,01</td>
-                                <td class="tablet-only">мм</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell">Уровень в барабане</td>
-                                <td class="drum_level">456</td>
-                                <td class="tablet-only">мм</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell">Давление в барабане</td>
-                                <td class="pressure_in_the_drum">24</td>
-                                <td class="tablet-only">Атм</td>
-                            </tr>
-                            <tr>
-                                <td class="label-cell">Сраб ТЗ защита остановка блока</td>
-                                <td class="block_stop">false</td>
-                                <td class="tablet-only"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                  </div>
-                </div></span>
 
-      </div>
-      <div class="swiper-slide"><span>
-      <div class="center sliding">Энергоблок №2</div>
-      <a href="power_state_data1.html">huhuhu</a>
-      </span>
-
-      </div>
-      <div class="swiper-slide"><span>Slide 3<ul></ul>></span>
-
-      </div>
-      <div class="swiper-slide"><span>Slide 4</span>
-
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-scrollbar"></div>
-
-  </div>
+        <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through">
+            <!-- Page, "data-page" contains page name -->
+            <!-- Scrollable page content -->
+            <div data-page="Slider" class="page">
+                <div class="page-content pull-to-refresh-content">
+                    <div class="pull-to-refresh-layer">
+                        <div class="preloader"></div>
+                        <div class="pull-to-refresh-arrow"></div>
                     </div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <span><div class="content-block">
+                                    <div class="data-table card">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="label-cell">Показатели</th>
+                                                    <th class="numeric-cell">Значение</th>
+                                                    <th class="tablet-only">Ед. изм.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="label-cell">Мощность блока</td>
+                                                    <td class="power">159</td>
+                                                    <td class="tablet-only">Мвт</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Частота сети</td>
+                                                    <td class="network_frequency">1</td>
+                                                    <td class="tablet-only">Гц</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Осевой сдвиг</td>
+                                                    <td class="axial_shift">-1,01</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Уровень в барабане</td>
+                                                    <td class="drum_level">456</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Давление в барабане</td>
+                                                    <td class="pressure_in_the_drum">24</td>
+                                                    <td class="tablet-only">Атм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Сраб ТЗ защита остановка блока</td>
+                                                    <td class="block_stop">false</td>
+                                                    <td class="tablet-only"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div></span>
+                            </div>
+                            <div class="swiper-slide"><span>
+                                <div class="content-block">
+                                    <div class="data-table card">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="label-cell">Показатели</th>
+                                                    <th class="numeric-cell">Значение</th>
+                                                    <th class="tablet-only">Ед. изм.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="label-cell">Мощность блока</td>
+                                                    <td class="power">159</td>
+                                                    <td class="tablet-only">Мвт</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Частота сети</td>
+                                                    <td class="network_frequency">1</td>
+                                                    <td class="tablet-only">Гц</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Осевой сдвиг</td>
+                                                    <td class="axial_shift">-1,01</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Уровень в барабане</td>
+                                                    <td class="drum_level">456</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Давление в барабане</td>
+                                                    <td class="pressure_in_the_drum">24</td>
+                                                    <td class="tablet-only">Атм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Сраб ТЗ защита остановка блока</td>
+                                                    <td class="block_stop">false</td>
+                                                    <td class="tablet-only"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                            </span></div>
+                            <div class="swiper-slide"><span>
+                                <div class="content-block">
+                                    <div class="data-table card">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="label-cell">Показатели</th>
+                                                    <th class="numeric-cell">Значение</th>
+                                                    <th class="tablet-only">Ед. изм.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="label-cell">Мощность блока</td>
+                                                    <td class="power">159</td>
+                                                    <td class="tablet-only">Мвт</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Частота сети</td>
+                                                    <td class="network_frequency">1</td>
+                                                    <td class="tablet-only">Гц</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Осевой сдвиг</td>
+                                                    <td class="axial_shift">-1,01</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Уровень в барабане</td>
+                                                    <td class="drum_level">456</td>
+                                                    <td class="tablet-only">мм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Давление в барабане</td>
+                                                    <td class="pressure_in_the_drum">24</td>
+                                                    <td class="tablet-only">Атм</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="label-cell">Сраб ТЗ защита остановка блока</td>
+                                                    <td class="block_stop">false</td>
+                                                    <td class="tablet-only"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </span></div>
+                            <div class="swiper-slide"><span>
+                                Slide 4
+                            </span></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-scrollbar"></div>
                     </div>
+                </div>
             </div>
         </div>
     </div>

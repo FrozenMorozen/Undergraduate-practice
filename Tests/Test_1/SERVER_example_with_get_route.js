@@ -44,11 +44,11 @@ app.get('/PUdata/:id', function(req, res) {
     console.log(' '+JSON.stringify(req.params));
     res.send(
       { 
-        "power": 123,
-        "network_frequency": 35,
-        "axial_shift": 1.01,
-        "drum_level": 14,
-        "pressure_in_the_drum": 124,
+        "power": [123, 152, 1178],
+        "network_frequency": [35, 37, 75],
+        "axial_shift": [1.01, 2.04, 3.08],
+        "drum_level": [14, 16, 19],
+        "pressure_in_the_drum": [124, 148, 111],
         "block_stop": true
       }
       );
@@ -56,15 +56,18 @@ app.get('/PUdata/:id', function(req, res) {
     console.log('');
 });
 
-app.get('/power_state_data1', function(req, res) {
+/*app.get('/power_state_data1.json', function(req, res) {
+  var path='C:/Users/Администратор/Desktop/Практика/Undergraduate-practice/Tests/Test_1';
 
     console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
     console.log(' '+JSON.stringify(req.body));
-    res.send(' ыыы');
+    res.download(path,'power_state_data1.json',function(err){
+      if (err) { console.log(err); };
+    });
 
 
     console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-  });
+  });*/
 
 app.get('/auth', function(req,res){
       console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
