@@ -36,23 +36,23 @@ app.listen(port, () => {
 
     });
 
-
-app.get('/PUdata/:id', function(req, res) {
-  const id = req.params.id;
-
-    console.log('Запрос №'+counterOfTryRequest()+' данных '+id+' блока принят');
-    console.log(' '+JSON.stringify(req.params));
-    res.send(
-      { 
+//----пример данных для отправки клиенту
+var response={ 
         "power": [123, 152, 1178],
         "network_frequency": [35, 37, 75],
         "axial_shift": [1.01, 2.04, 3.08],
         "drum_level": [14, 16, 19],
         "pressure_in_the_drum": [124, 148, 111],
         "block_stop": true
-      }
-      );
-    console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
+      };
+
+app.get('/PUdata/:id', function(req, res) {
+  var id = req.params.id;
+
+    console.log('Запрос №'+counterOfTryRequest()+' данных '+ id +' блока принят');
+    console.log(' '+JSON.stringify(req.header('Referer')));
+    res.send(response);
+    console.log('Ответ №'+ JSON.stringify(response,"",10) +' отправлен');
     console.log('');
 });
 
@@ -71,9 +71,20 @@ app.get('/PUdata/:id', function(req, res) {
 
 app.get('/auth', function(req,res){
       console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
-    console.log(' '+JSON.stringify(req.body));
+    console.log(' '+JSON.stringify(req.header('Referer')));
 
 
+
+    res.download(__dirname +'/authorization.json',function(err){
+      if (err) {
+        console.log('Ошибка загрузки файла'+ err);
+      } else {
+        console.log('Файл успешно отправлен----------------------------');
+      }
+    });
+
+    console.log('Ответ №'+ res.head+' отправлен');
+});
     //--пример запроса на стороне сайта с колбэком
     /*var $=require('JQuery');
     var test;
@@ -102,7 +113,7 @@ app.get('/auth', function(req,res){
     return oRequest.responseText;
 };*/
 
-var json;
+/*var json;
     app.get('authorization.json', function(data){
       json=data;
       res.text=json;
@@ -122,7 +133,21 @@ var options = {
   }
 }
 
-app.use(express.static('public', options));
+app.use(express.static('public', options));*/
 
-    console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
+var jsonParser = bodyParser.json();
+
+app.post("/auth", jsonParser, function (req, res) {
+
+    if(!req.body) return res.sendStatus(400);
+
+    var fs = require("fs");
+      fs.readFile("authorization.json", "utf8", 
+            function(error,data){
+                console.log("Асинхронное чтение файла");
+                if(error) throw error; // если возникла ошибка
+                console.log(data);  // выводим считанные данные
+});
+    console.log(req.body);
+    res.json(`${req.body.username} - ${req.body.password}`);
 });

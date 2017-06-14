@@ -1,3 +1,8 @@
+
+/*эмуляторы онлайн
+http://www.jamus.co.uk/demos/rwd-demonstrations/
+
+*/
 // Initialize app
 var myApp = new Framework7({
     animateNavBackIcon: true
@@ -16,25 +21,33 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.swiper('.swiper-container', {
     pagination:'.swiper-pagination',
-    speed: 400,
+    speed: 1000,
     spaceBetween: 100
   });
+
+var id=0;
+var inputCheck=false;
 
 //-----Этот иф исполниться только один раз в самом начале
 //-----поэтому в нем выполни проверку аутентификации и заполнение первого слайда данными
 if (mainView.slides[1]) {
-myApp.modalLogin('Введите данные для входа', function (username, password) {
-            myApp.alert('Thank you! Username: ' + username + ', Password: ' + password);
-        }); 
-$$.get('http://localhost:58444/PUdata/1', function (data) {
+myApp.modalLogin('Введите данные для входа','Авторизация', function (username, password) {
+    $$.post('http://localhost:58444/auth', {username:username, password: password}, function (data) {
+        myApp.alert(JSON.stringify(data));
+        $$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
-    $$('td.power').text(data.power[0]);
-    $$('td.network_frequency').text(data.network_frequency[0]);
-    $$('td.axial_shift').text(data.axial_shift[0]);
-    $$('td.drum_level').text(data.drum_level[0]);
-    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[0]);
+    $$('td.power').text(data.power[id]);
+    $$('td.network_frequency').text(data.network_frequency[id]);
+    $$('td.axial_shift').text(data.axial_shift[id]);
+    $$('td.drum_level').text(data.drum_level[id]);
+    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
 });
+    });
+    inputCheck=true;
+});
+
+
 }
     
  
@@ -42,15 +55,8 @@ mainView.on('slideNextStart', function () {
     switch (mainView.activeIndex) {
 case 1:
 id=1;
-$$('div.navbar-inner').html('<div align="right"><nobr>Текст</nobr></div>');
-//text('energy');
-
-$$.get('http://localhost:58444/power_state_data1.json', function (data) {
-    //data = JSON.parse(data);
-    myApp.alert(JSON.stringify(data));
-  });
-
-$$.get('http://localhost:58444/PUdata/id', function (data) {
+if (inputCheck) {
+    $$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
     $$('td.power').text(data.power[id]);
     $$('td.network_frequency').text(data.network_frequency[id]);
@@ -59,13 +65,16 @@ $$.get('http://localhost:58444/PUdata/id', function (data) {
     $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
 }); 
+}
+
+
 
 break;
 case 2:
 id=2;
-$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №3</div>');
 
-$$.get('http://localhost:58444/PUdata/id', function (data) {
+if (inputCheck) {
+    $$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
     $$('td.power').text(data.power[id]);
     $$('td.network_frequency').text(data.network_frequency[id]);
@@ -73,13 +82,11 @@ $$.get('http://localhost:58444/PUdata/id', function (data) {
     $$('td.drum_level').text(data.drum_level[id]);
     $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
-}); 
+});
+}
+
+ 
    
-break;
-case 3:
-$$('div.navbar-inner').html('<div class="center sliding">График выработки</div>');
-
-
 break;
    }
 
@@ -89,17 +96,13 @@ break;
 
 mainView.on('slidePrevStart', function () {
     
-    var id;
+    
       switch (mainView.activeIndex) {
 case 0:
 id=0;
-  $$('div.navbar-inner').html('<div class="center sliding">Энергоблок №1</div>');
-/*$$.getJSON('http://localhost:58444/auth', function (data) {
-    //data = JSON.parse(data);
-    myApp.alert(JSON.stringify(data));
-  });*/
-
-$$.get('http://localhost:58444/PUdata/id', function (data) {
+  
+  if (inputCheck) {
+    $$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
     $$('td.power').text(data.power[id]);
     $$('td.network_frequency').text(data.network_frequency[id]);
@@ -108,12 +111,22 @@ $$.get('http://localhost:58444/PUdata/id', function (data) {
     $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
 }); 
+}
+
+$$.getJSON('http://localhost:58444/auth', function (data) {
+    data = JSON.parse(data);
+    myApp.alert(data);
+  });
+
+
+
+
 break;
 case 1:
 id=1;
-$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №2</div>');
 
-$$.get('http://localhost:58444/PUdata/id', function (data) {
+if (inputCheck) {
+    $$.get('http://localhost:58444/PUdata/id', function (data) {
     data = JSON.parse(data);
     $$('td.power').text(data.power[id]);
     $$('td.network_frequency').text(data.network_frequency[id]);
@@ -122,21 +135,9 @@ $$.get('http://localhost:58444/PUdata/id', function (data) {
     $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
     $$('td.block_stop').text(data.block_stop);
 }); 
+}
 
-break;
-case 2:
-id=2;
-$$('div.navbar-inner').html('<div class="center sliding">Энергоблок №3</div>');
 
-$$.get('http://localhost:58444/PUdata/id', function (data) {
-    data = JSON.parse(data);
-    $$('td.power').text(data.power[id]);
-    $$('td.network_frequency').text(data.network_frequency[id]);
-    $$('td.axial_shift').text(data.axial_shift[id]);
-    $$('td.drum_level').text(data.drum_level[id]);
-    $$('td.pressure_in_the_drum').text(data.pressure_in_the_drum[id]);
-    $$('td.block_stop').text(data.block_stop);
-}); 
 
 break;
 }   
@@ -226,34 +227,3 @@ $$(document).on('pageInit', function (e) {
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var ptrContent = $$('.pull-to-refresh-content');
- 
-// Add 'refresh' listener on it
-ptrContent.on('ptr:refresh', function (e) {
-    // Emulate 2s loading
-    setTimeout(function () {
-        // Prepend new list element
-        ptrContent.find('ul').prepend('кое что добавил');
-        // When loading done, we need to reset it
-        myApp.pullToRefreshDone();
-    }, 2000);
-});
-myApp.pullToRefreshDone();
-myApp.destroyPullToRefresh();

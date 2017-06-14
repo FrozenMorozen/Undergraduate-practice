@@ -1,11 +1,9 @@
-{
-			"User1" : {
+{"user1" : {
 			"login" : "login",
 			"password" : "password"
 		},
-		"User2" : {
+		"user2" : {
 			"login" : "login",
 			"password" : "password
-		},
-		'ji':21
+		}
 }
