@@ -21,7 +21,7 @@ var $$ = Dom7;
 // Add view
 var mainView = myApp.swiper('.swiper-container', {
     pagination:'.swiper-pagination',
-    speed: 1000,
+    speed: 800,
     spaceBetween: 100
   });
 

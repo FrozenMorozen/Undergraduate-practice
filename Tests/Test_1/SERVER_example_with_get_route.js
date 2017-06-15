@@ -56,24 +56,10 @@ app.get('/PUdata/:id', function(req, res) {
     console.log('');
 });
 
-/*app.get('/power_state_data1.json', function(req, res) {
-  var path='C:/Users/Администратор/Desktop/Практика/Undergraduate-practice/Tests/Test_1';
-
-    console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
-    console.log(' '+JSON.stringify(req.body));
-    res.download(path,'power_state_data1.json',function(err){
-      if (err) { console.log(err); };
-    });
-
-
-    console.log('Ответ №'+ counterOfTryRequest()+'  '+ res.head+' отправлен');
-  });*/
 
 app.get('/auth', function(req,res){
       console.log('Запрос №'+counterOfTryRequest()+'  '+req.method+' принят');
     console.log(' '+JSON.stringify(req.header('Referer')));
-
-
 
     res.download(__dirname +'/authorization.json',function(err){
       if (err) {
@@ -85,58 +71,9 @@ app.get('/auth', function(req,res){
 
     console.log('Ответ №'+ res.head+' отправлен');
 });
-    //--пример запроса на стороне сайта с колбэком
-    /*var $=require('JQuery');
-    var test;
-    $.ajax({
-        url: "authorization.json",
-        dataType: "JSON",
-        async: true,
-        success: function(msg){
-            test = msg;
-            console.log('Содержимое файла: '+test);
-        }
-    });*/
-/*JQuery.getJSON('authorization.json', function(data){
-  var test;
-  test=data;
-  res.text=test;
-  console.log(test);
-});*/
 
-/*loadURL = function(url) {
-    var oRequest = new XMLHttpRequest();
-    oRequest.open('GET', url, false);
-    oRequest.setRequestHeader("User-Agent", navigator.userAgent);
-    oRequest.send(null);
-    console.log(oRequest.responseText);
-    return oRequest.responseText;
-};*/
-
-/*var json;
-    app.get('authorization.json', function(data){
-      json=data;
-      res.text=json;
-      console.log(json);
-        }); 
-
-
-var options = {
-  dotfiles: 'ignore',
-  etag: false,
-  extensions: ['json'],
-  index: false,
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now());
-  }
-}
-
-app.use(express.static('public', options));*/
 
 var jsonParser = bodyParser.json();
-
 app.post("/auth", jsonParser, function (req, res) {
 
     if(!req.body) return res.sendStatus(400);
